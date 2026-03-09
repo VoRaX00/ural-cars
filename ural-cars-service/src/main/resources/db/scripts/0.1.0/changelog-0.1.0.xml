@@ -39,4 +39,12 @@
          </createTable>
     </changeSet>
 
+    <changeSet id="add column vin_number to cars" author="kerzhakov">
+        <addColumn tableName="cars">
+            <column name="vin_number" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

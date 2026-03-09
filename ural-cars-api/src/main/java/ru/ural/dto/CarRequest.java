@@ -24,4 +24,7 @@ public class CarRequest {
     @Schema(description = "Год производства")
     private Integer yearProduction;
 
+    @Schema(description = "ВИН-номер")
+    private String vinNumber;
+
 }

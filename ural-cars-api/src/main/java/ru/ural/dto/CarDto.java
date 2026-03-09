@@ -35,4 +35,7 @@ public class CarDto {
     @Schema(description = "Дата обновления")
     private ZonedDateTime updatedAt;
 
+    @Schema(description = "ВИН-номер")
+    private String vinNumber;
+
 }

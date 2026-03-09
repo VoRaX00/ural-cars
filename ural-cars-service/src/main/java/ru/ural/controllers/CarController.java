@@ -2,6 +2,7 @@ package ru.ural.controllers;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,14 +22,12 @@ public class CarController implements CarApi {
 
     @Override
     public ResponseEntity<CarDto> create(CarRequest carRequest, Authentication authentication) {
-        log.warn("Not implemented");
-        return null;
+        return new ResponseEntity<>(carService.create(carRequest, authentication), HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<CarDto> getById(Long id) {
-        log.warn("Not implemented");
-        return null;
+    public ResponseEntity<CarDto> getByVin(String vin) {
+        return ResponseEntity.ok(carService.findByVin(vin));
     }
 
     @Override

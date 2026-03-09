@@ -25,6 +25,7 @@
         <java.version>21</java.version>
         <ural-common-starter.version>1.8-SNAPSHOT</ural-common-starter.version>
         <ural-security.version>1.7-SNAPSHOT</ural-security.version>
+        <ural-gai-api.version>1.0-SNAPSHOT</ural-gai-api.version>
         <spring-boot.version>3.4.3</spring-boot.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
@@ -66,6 +67,12 @@
                 <groupId>${project.groupId}</groupId>
                 <artifactId>ural-test-starter</artifactId>
                 <version>${ural-common-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>ural-gai-api</artifactId>
+                <version>${ural-gai-api.version}</version>
             </dependency>
 
             <!--Child dependencies-->

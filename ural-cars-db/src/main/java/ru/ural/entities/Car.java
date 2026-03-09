@@ -36,7 +36,10 @@ public class Car extends BaseEntity {
     @Column(nullable = false)
     private ZonedDateTime createdAt;
 
-    @Column(nullable = false)
+    @Column
     private ZonedDateTime updatedAt;
+
+    @Column(nullable = false, unique = true)
+    private String vinNumber;
 
 }
