@@ -6,7 +6,6 @@ import ru.ural.enums.CarType;
 import ural.ru.entities.BaseEntity;
 
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -31,7 +30,7 @@ public class Car extends BaseEntity {
     private Integer yearProduction;
 
     @Column(nullable = false)
-    private UUID userUuid;
+    private Long userId;
 
     @Column(nullable = false)
     private ZonedDateTime createdAt;

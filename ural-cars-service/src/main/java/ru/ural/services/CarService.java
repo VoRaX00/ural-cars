@@ -12,11 +12,10 @@ import ru.ural.entities.Car;
 import ru.ural.mappers.CarMapper;
 import ru.ural.repositories.CarRepository;
 import ural.ru.exceptions.NotFoundException;
-import ural.ru.models.UserPrincipals;
-import ural.ru.utils.JwtUtils;
+import ru.ural.models.UserPrincipals;
+import ru.ural.utils.JwtUtils;
 
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 @Slf4j
 @Service
@@ -33,7 +32,7 @@ public class CarService {
 
         UserPrincipals user = JwtUtils.getUser(authentication);
 
-        entity.setUserUuid(UUID.fromString(user.getUuid()));
+        entity.setUserId(user.getId());
         entity.setCreatedAt(ZonedDateTime.now());
 
         Car savedCar = carRepository.save(entity);

@@ -12,10 +12,13 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import ural.ru.configs.AllowedUrls;
-import ural.ru.filters.ExceptionFilterHandler;
+import ru.ural.decoders.NoVerifyJwtDecoder;
+import ru.ural.filters.ExceptionFilterHandler;
+
+import java.util.Optional;
 
 @Slf4j
 @Configuration
@@ -26,10 +29,18 @@ public class SecurityConfig {
 
     private final ExceptionFilterHandler exceptionFilterHandler;
 
+    private final NoVerifyJwtDecoder noVerifyJwtDecoder;
+
+    private final Optional<JwtDecoder> verifyJwtDecoder;
+
     @Bean
     public SecurityFilterChain securityFilterChain(
             HttpSecurity http,
             Converter<Jwt, ? extends AbstractAuthenticationToken> jwtAuthenticationConverter) throws Exception {
+        JwtDecoder decoder = verifyJwtDecoder.orElseGet(() -> {
+            log.info("Using NoVerifyJwtDecoder");
+            return noVerifyJwtDecoder;
+        });
 
         return http
                 .csrf(AbstractHttpConfigurer::disable)
@@ -37,7 +48,9 @@ public class SecurityConfig {
                         sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(resourceServerConfigurer ->
                         resourceServerConfigurer.jwt(jwtConfigurer ->
-                                jwtConfigurer.jwtAuthenticationConverter(jwtAuthenticationConverter)))
+                                jwtConfigurer
+                                        .decoder(decoder)
+                                        .jwtAuthenticationConverter(jwtAuthenticationConverter)))
                 .authorizeHttpRequests(this::authorizeHttpRequests)
                 .addFilterBefore(exceptionFilterHandler, UsernamePasswordAuthenticationFilter.class)
                 .build();
