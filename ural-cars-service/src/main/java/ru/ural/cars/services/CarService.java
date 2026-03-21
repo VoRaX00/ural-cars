@@ -1,15 +1,15 @@
-package ru.ural.services;
+package ru.ural.cars.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.NonNull;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import ru.ural.dto.CarDto;
-import ru.ural.dto.CarRequest;
-import ru.ural.entities.Car;
-import ru.ural.mappers.CarMapper;
-import ru.ural.repositories.CarRepository;
+import ru.ural.cars.dto.CarDto;
+import ru.ural.cars.dto.CarRequest;
+import ru.ural.cars.entities.Car;
+import ru.ural.cars.mappers.CarMapper;
+import ru.ural.cars.repositories.CarRepository;
 import ru.ural.exceptions.NotFoundException;
 import ru.ural.models.UserPrincipals;
 import ru.ural.utils.JwtUtils;

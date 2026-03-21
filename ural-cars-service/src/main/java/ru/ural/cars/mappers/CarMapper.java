@@ -1,10 +1,10 @@
-package ru.ural.mappers;
+package ru.ural.cars.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
-import ru.ural.dto.CarDto;
-import ru.ural.dto.CarRequest;
-import ru.ural.entities.Car;
+import ru.ural.cars.dto.CarDto;
+import ru.ural.cars.dto.CarRequest;
+import ru.ural.cars.entities.Car;
 
 import java.util.List;
 

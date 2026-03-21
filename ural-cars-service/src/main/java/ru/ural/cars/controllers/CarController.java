@@ -1,14 +1,14 @@
-package ru.ural.controllers;
+package ru.ural.cars.controllers;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import ru.ural.api.CarApi;
-import ru.ural.dto.CarDto;
-import ru.ural.dto.CarRequest;
-import ru.ural.services.CarService;
+import ru.ural.cars.api.CarApi;
+import ru.ural.cars.dto.CarDto;
+import ru.ural.cars.dto.CarRequest;
+import ru.ural.cars.services.CarService;
 import ru.ural.dto.PageDto;
 import ru.ural.dto.PaginatedParamsDto;
 

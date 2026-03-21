@@ -1,4 +1,4 @@
-package ru.ural.enums;
+package ru.ural.cars.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

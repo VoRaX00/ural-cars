@@ -1,4 +1,4 @@
-package ru.ural.configs;
+package ru.ural.cars.configs;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +15,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import ru.ural.configs.AllowedUrls;
 import ru.ural.filters.ExceptionFilterHandler;
 
 @Slf4j

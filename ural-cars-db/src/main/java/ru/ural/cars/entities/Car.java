@@ -1,8 +1,9 @@
-package ru.ural.entities;
+package ru.ural.cars.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import ru.ural.enums.CarType;
+import ru.ural.cars.enums.CarType;
+import ru.ural.entities.BaseEntity;
 
 import java.time.ZonedDateTime;
 

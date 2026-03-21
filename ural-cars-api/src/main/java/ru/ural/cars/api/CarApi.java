@@ -1,10 +1,10 @@
-package ru.ural.api;
+package ru.ural.cars.api;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.ural.dto.CarDto;
-import ru.ural.dto.CarRequest;
+import ru.ural.cars.dto.CarDto;
+import ru.ural.cars.dto.CarRequest;
 import ru.ural.dto.PageDto;
 import ru.ural.dto.PaginatedParamsDto;
 
