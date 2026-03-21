@@ -4,14 +4,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RestController;
 import ru.ural.api.CarApi;
 import ru.ural.dto.CarDto;
 import ru.ural.dto.CarRequest;
 import ru.ural.services.CarService;
-import ural.ru.dto.PageDto;
-import ural.ru.dto.PaginatedParamsDto;
+import ru.ural.dto.PageDto;
+import ru.ural.dto.PaginatedParamsDto;
 
 @Slf4j
 @RestController
@@ -21,8 +20,8 @@ public class CarController implements CarApi {
     private final CarService carService;
 
     @Override
-    public ResponseEntity<CarDto> create(CarRequest carRequest, Authentication authentication) {
-        return new ResponseEntity<>(carService.create(carRequest, authentication), HttpStatus.CREATED);
+    public ResponseEntity<CarDto> create(CarRequest carRequest) {
+        return new ResponseEntity<>(carService.create(carRequest), HttpStatus.CREATED);
     }
 
     @Override
@@ -37,13 +36,13 @@ public class CarController implements CarApi {
     }
 
     @Override
-    public ResponseEntity<CarDto> update(Long id, CarRequest carRequest, Authentication authentication) {
+    public ResponseEntity<CarDto> update(Long id, CarRequest carRequest) {
         log.warn("Not implemented");
         return null;
     }
 
     @Override
-    public ResponseEntity<Void> deleteById(Long id, Authentication authentication) {
+    public ResponseEntity<Void> deleteById(Long id) {
         log.warn("Not implemented");
         return null;
     }

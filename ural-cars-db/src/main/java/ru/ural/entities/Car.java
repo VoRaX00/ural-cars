@@ -3,7 +3,6 @@ package ru.ural.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import ru.ural.enums.CarType;
-import ural.ru.entities.BaseEntity;
 
 import java.time.ZonedDateTime;
 
@@ -30,7 +29,7 @@ public class Car extends BaseEntity {
     private Integer yearProduction;
 
     @Column(nullable = false)
-    private Long userId;
+    private String userUuid;
 
     @Column(nullable = false)
     private ZonedDateTime createdAt;
