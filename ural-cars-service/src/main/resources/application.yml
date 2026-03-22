@@ -26,6 +26,7 @@ spring:
     database-change-log-table: ural_cars_log
     database-change-log-lock-table: ural_cars_lock
     change-log: classpath:db/changelog-master.xml
+    default-schema: ural_cars
 
 logging:
   level:
