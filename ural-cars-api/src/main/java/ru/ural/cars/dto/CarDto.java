@@ -14,6 +14,9 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 public class CarDto {
 
+    @Schema(description = "Id автомобиля")
+    private String id;
+
     @Schema(description = "Тип автомобиля")
     private String carType;
 

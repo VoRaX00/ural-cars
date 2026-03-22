@@ -45,4 +45,11 @@ public class CarService {
         return carMapper.toDto(foundCar);
     }
 
+    public CarDto findById(@NonNull Long id) {
+        var foundCar = carRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Not found car by id: %s".formatted(id)));
+
+        return carMapper.toDto(foundCar);
+    }
+
 }

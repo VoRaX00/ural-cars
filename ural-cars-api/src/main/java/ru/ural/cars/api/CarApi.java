@@ -15,8 +15,11 @@ public interface CarApi {
     @PostMapping
     ResponseEntity<CarDto> create(@RequestBody CarRequest carRequest);
 
-    @GetMapping("/{vin}")
+    @GetMapping("/by-vin/{vin}")
     ResponseEntity<CarDto> getByVin(@PathVariable String vin);
+
+    @GetMapping("/{id}")
+    ResponseEntity<CarDto> getById(@PathVariable Long id);
 
     @GetMapping
     ResponseEntity<PageDto<CarDto>> getByFilters(@RequestParam PaginatedParamsDto paramsDto);
