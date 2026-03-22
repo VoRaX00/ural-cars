@@ -36,8 +36,7 @@ public class CarController implements CarApi {
 
     @Override
     public ResponseEntity<PageDto<CarDto>> getByFilters(PaginatedParamsDto paramsDto) {
-        log.warn("Not implemented");
-        return null;
+        return ResponseEntity.ok(carService.getPage(paramsDto));
     }
 
     @Override

@@ -22,7 +22,7 @@ public interface CarApi {
     ResponseEntity<CarDto> getById(@PathVariable Long id);
 
     @GetMapping
-    ResponseEntity<PageDto<CarDto>> getByFilters(@RequestParam PaginatedParamsDto paramsDto);
+    ResponseEntity<PageDto<CarDto>> getByFilters(PaginatedParamsDto paramsDto);
 
     @PutMapping("/{id}")
     ResponseEntity<CarDto> update(
