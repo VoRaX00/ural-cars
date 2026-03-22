@@ -29,7 +29,7 @@
             <column name="year_production" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
-            <column name="user_uuid" type="uuid">
+            <column name="user_uuid" type="TEXT">
                 <constraints nullable="false"/>
             </column>
             <column name="created_at" type="timestamptz">
@@ -43,15 +43,6 @@
         <addColumn tableName="cars">
             <column name="vin_number" type="VARCHAR(255)">
                 <constraints nullable="false" unique="true"/>
-            </column>
-        </addColumn>
-    </changeSet>
-
-    <changeSet id="changed column user_uuid in cars" author="kerzhakov">
-        <dropColumn tableName="cars" columnName="user_uuid"/>
-        <addColumn tableName="cars">
-            <column name="user_id" type="BIGINT">
-                <constraints nullable="false"/>
             </column>
         </addColumn>
     </changeSet>

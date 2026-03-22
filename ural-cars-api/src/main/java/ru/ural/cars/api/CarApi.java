@@ -9,7 +9,7 @@ import ru.ural.dto.PageDto;
 import ru.ural.dto.PaginatedParamsDto;
 
 @RequestMapping("/api/cars")
-@Tag(name = "Car api", description = "API грузов платформы BACAR")
+@Tag(name = "Car api", description = "API для работы с машинами")
 public interface CarApi {
 
     @PostMapping
