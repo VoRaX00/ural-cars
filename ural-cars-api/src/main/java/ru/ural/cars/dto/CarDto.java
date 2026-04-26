@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -40,5 +41,8 @@ public class CarDto {
 
     @Schema(description = "ВИН-номер")
     private String vinNumber;
+
+    @Schema(description = "Id файлов транспортного средства")
+    private List<Long> fileIds;
 
 }

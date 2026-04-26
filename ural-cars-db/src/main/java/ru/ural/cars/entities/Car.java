@@ -2,10 +2,14 @@ package ru.ural.cars.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import ru.ural.cars.enums.CarType;
 import ru.ural.entities.BaseEntity;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -40,5 +44,8 @@ public class Car extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String vinNumber;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    private List<Long> fileIds = new ArrayList<>();
 
 }

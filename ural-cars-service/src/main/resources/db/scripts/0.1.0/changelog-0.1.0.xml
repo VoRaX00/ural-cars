@@ -47,4 +47,10 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="add column fileIds" author="kerzhakov">
+        <addColumn tableName="cars">
+            <column name="file_ids" type="JSONB"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

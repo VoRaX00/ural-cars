@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -26,5 +28,8 @@ public class CarRequest {
 
     @Schema(description = "ВИН-номер")
     private String vinNumber;
+
+    @Schema(description = "Id файлов транспортного средства")
+    private List<Long> fileIds;
 
 }
