@@ -16,7 +16,7 @@ import java.util.List;
 public class CarDto {
 
     @Schema(description = "Id автомобиля")
-    private String id;
+    private Long id;
 
     @Schema(description = "Тип автомобиля")
     private String carType;
