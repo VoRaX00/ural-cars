@@ -12,7 +12,7 @@
 
     <groupId>ural</groupId>
     <artifactId>ural-cars</artifactId>
-    <version>1.5-SNAPSHOT</version>
+    <version>1.6-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <modules>

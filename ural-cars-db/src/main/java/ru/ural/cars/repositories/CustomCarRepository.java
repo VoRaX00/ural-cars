@@ -7,14 +7,13 @@ import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
 import ru.ural.cars.entities.Car;
+import ru.ural.cars.enums.CarType;
 import ru.ural.models.PaginatedParamsModel;
 import ru.ural.repositories.AbstractFilterRepository;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @Repository
@@ -40,26 +39,94 @@ public class CustomCarRepository extends AbstractFilterRepository<Car> {
             Map<String, String> filters
     ) {
         List<Predicate> predicates = new ArrayList<>();
+        if (filters == null) {
+            return predicates;
+        }
 
-        String startDate = filters.get("startDate");
-        String endDate = filters.get("endDate");
-        if (startDate != null && endDate != null) {
+        addLikePredicate(predicates, builder, root, filters, "carName");
+        addLikePredicate(predicates, builder, root, filters, "carModel");
+        addLikePredicate(predicates, builder, root, filters, "vinNumber");
+        addEqualPredicate(predicates, builder, root, filters, "userUuid");
+        addYearProductionPredicate(predicates, builder, root, filters);
+        addCarTypePredicate(predicates, builder, root, filters);
+
+        return predicates;
+    }
+
+    private void addLikePredicate(
+            List<Predicate> predicates,
+            CriteriaBuilder builder,
+            Root<Car> root,
+            Map<String, String> filters,
+            String fieldName
+    ) {
+        String value = getFilterValue(filters, fieldName);
+        if (value != null) {
             predicates.add(
-                    builder.between(
-                            root.get("startDate"),
-                            builder.literal(LocalDate.parse(
-                                    startDate,
-                                    DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                            ).atStartOfDay()),
-                            builder.literal(LocalDate.parse(
-                                    endDate,
-                                    DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                            ).atTime(LocalTime.MAX))
+                    builder.like(
+                            builder.lower(root.get(fieldName)),
+                            "%" + value.toLowerCase(Locale.ROOT) + "%"
                     )
             );
         }
+    }
 
-        return predicates;
+    private void addEqualPredicate(
+            List<Predicate> predicates,
+            CriteriaBuilder builder,
+            Root<Car> root,
+            Map<String, String> filters,
+            String fieldName
+    ) {
+        String value = getFilterValue(filters, fieldName);
+        if (value != null) {
+            predicates.add(builder.equal(root.get(fieldName), value));
+        }
+    }
+
+    private void addYearProductionPredicate(
+            List<Predicate> predicates,
+            CriteriaBuilder builder,
+            Root<Car> root,
+            Map<String, String> filters
+    ) {
+        String yearProduction = getFilterValue(filters, "yearProduction");
+        if (yearProduction != null) {
+            predicates.add(builder.equal(root.get("yearProduction"), Integer.parseInt(yearProduction)));
+        }
+    }
+
+    private void addCarTypePredicate(
+            List<Predicate> predicates,
+            CriteriaBuilder builder,
+            Root<Car> root,
+            Map<String, String> filters
+    ) {
+        String carType = getFilterValue(filters, "carType");
+        if (carType != null) {
+            CarType parsedCarType = parseCarType(carType);
+            predicates.add(parsedCarType == null
+                    ? builder.disjunction()
+                    : builder.equal(root.get("carType"), parsedCarType));
+        }
+    }
+
+    private CarType parseCarType(String value) {
+        CarType carType = CarType.parse(value);
+        if (carType != null) {
+            return carType;
+        }
+
+        try {
+            return CarType.valueOf(value.toUpperCase(Locale.ROOT));
+        } catch (IllegalArgumentException exception) {
+            return null;
+        }
+    }
+
+    private String getFilterValue(Map<String, String> filters, String name) {
+        String value = filters.get(name);
+        return value == null || value.isBlank() ? null : value.trim();
     }
 
 }

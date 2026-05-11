@@ -52,5 +52,13 @@
             <column name="file_ids" type="JSONB"/>
         </addColumn>
     </changeSet>
+    
+    <changeSet id="add columns loan capacity, body and loading type" author="kerzhakov">
+        <addColumn tableName="cars">
+            <column name="load_capacity" type="DECIMAL"/>
+            <column name="body_type" type="JSONB"/>
+            <column name="loading_type" type="JSONB"/>
+        </addColumn>
+    </changeSet>
 
 </databaseChangeLog>

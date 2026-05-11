@@ -17,7 +17,16 @@ public enum CarType implements ValuableEnum<CarType> {
     private final String value;
 
     public static CarType parse(String value) {
-        return PASSENGER.parseValue(value);
+        if (value == null) {
+            return null;
+        }
+
+        String normalizedValue = value.trim();
+        return Arrays.stream(values())
+                .filter(carType -> carType.name().equalsIgnoreCase(normalizedValue)
+                        || carType.getValue().equalsIgnoreCase(normalizedValue))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
